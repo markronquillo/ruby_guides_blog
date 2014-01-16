@@ -1,0 +1,29 @@
+<h1>Edit Post</h1>
+
+<!-- By default form created by 'form_for' has a method of 'POST' -->
+<%= form_for :post, url: post_path(@post), method: :patch do |f| %>
+	<% if @post.errors.any? %>
+	<div class="error-explanation">
+		<h2> <%= pluralize(@post.errors.count, "error") %> prohibited this post to be updated</h2>
+		<ul>
+			<% $post.errors.full_message.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+	<p>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</p>
+
+	<p>
+		<%= f.label :text %>
+		<%= f.text_area :text %>
+	</p>
+
+	<%= f.submit %>
+<% end %>
+
+<%= link_to 'Back', posts_path %>
